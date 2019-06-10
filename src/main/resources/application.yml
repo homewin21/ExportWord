@@ -1,7 +1,9 @@
 spring:
     datasource:
         name: test
-        url: jdbc:mysql://39.108.76.214:3306/project
-        username: root
-        password: 1111    thymeleaf:        cache: false
+        url: your url
+        username: your name
+        password: your pw
+    thymeleaf:
+        cache: false
         
