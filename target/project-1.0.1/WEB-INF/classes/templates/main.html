@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+			<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+		<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/main.js}"></script>
+		<script type="text/javascript" th:src="@{/layer/layui.js}"></script>
+		<link rel="stylesheet" th:href="@{/layer/css/layui.css}" />
+	</head>
+
+	<body>
+	<div id="nav" style="background-color: #FFFFFF;	display: flex;justify-content: space-between;">
+	<div>
+		<ul class="nav nav-pills">
+
+			<li role="presentation" class="active">
+				<a href="/main">创建文档</a>
+			</li>
+
+			<li role="presentation">
+				<a href="/download">我的文档</a>
+			</li>
+
+		</ul>
+	</div>
+	<div style="line-height: 40px;margin-right: 20px;">
+		<span th:if="${session.user}==null">未登录</span>
+		<span th:if="${session.user}!=null">你好，<span th:text=${session.user.username}></span>
+		<div class="btn-group" style="margin-right: 30px">
+  <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #ffffff">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="logout">注销</a></li>
+  </ul>
+</div></span>
+
+	</div>
+</div>
+		<div class="container1" style="width: 100%;">
+		<form action="#" th:action="@{/save}"  method="post" enctype="multipart/form-data"> 
+			<!--侧边栏-->
+			<div class="leftList ">
+		<!-- <button class="btn btn-success" id="save" >保存</button> -->
+	文档名：	<input  type="text" id="word_name" name="word_name" style="background-color: #e6e6e6;width: 100px;" />
+		<button type="button" class="btn btn-success" id="save">保存</button>
+				<!--每个模块由一个主标题和若干个子标题组成-->
+				<div class="block">
+					<div class="main_title abstract">
+						<span>摘要</span>
+					</div>
+					<div class="main_title abstract_en">
+						<span>abstract</span>
+					</div>
+				</div>
+				
+				<div class="block">
+					<div class="main_title 1">
+						<span class="glyphicon glyphicon-triangle-right expand rotate1" aria-hidden="true"></span>
+						1 <span>引言</span>
+						<input type="text" name="main_1" style="background: #e6e6e6;width: 60%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok okM" style="color:  #009F95;display: none;cursor: pointer;"></span>
+					</div>
+					<div >
+					<div class="sub_title 1_1">
+							1.1 <span>课题设计的背景</span>
+							<input type="text" name="sub_1_1" style="background: #e6e6e6;width: 70%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok ok" style="color:  #009F95;display: none;cursor: pointer;"></span>
+						</div>
+						<div class="sub_title 1_2">1.2 <span>课题设计的目的和意义</span>
+							<input type="text" name="sub_1_2" style="background: #e6e6e6;width: 70%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok ok" style="color:  #009F95;display: none;cursor: pointer;"></span></div>
+						<div class="sub_title 1_3">1.3 <span>课题设计的关键技术</span>
+							<input type="text" name="sub_1_3" style="background: #e6e6e6;width: 70%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok ok" style="color:  #009F95;display: none;cursor: pointer;"></span></div>
+					</div>
+				</div>
+				<div class="block">
+					<div class="main_title 2">
+						<span class="glyphicon glyphicon-triangle-right expand rotate1" aria-hidden="true"></span>
+						2 <span>运行环境和设计思路</span>
+						<input type="text" name="main_2" style="background: #e6e6e6;width: 60%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok okM" style="color:  #009F95;display: none;cursor: pointer;"></span>
+					</div>
+					<div >
+					<div class="sub_title 2_1">2.1 <span>运行环境</span>
+							<input type="text" name="sub_2_1" style="background: #e6e6e6;width: 70%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok ok" style="color:  #009F95;display: none;cursor: pointer;"></span></div>
+						<div class="sub_title 2_2">2.2 <span>设计思路</span>
+							<input type="text" name="sub_2_2" style="background: #e6e6e6;width: 70%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok ok" style="color:  #009F95;display: none;cursor: pointer;"></span></div>
+					</div>
+				</div>
+				<div class="block">
+					<div class="main_title 3">
+						3 <span>需求分析</span>
+						<input type="text" name="main_3" style="background: #e6e6e6;width: 60%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok okM" style="color:  #009F95;display: none;cursor: pointer;"></span>
+					</div>
+					<div class="sub_title">
+						<table style="width: 100%;">
+						</table>
+
+					</div>
+				</div>
+				<div class="block">
+					<div class="main_title 4">
+						<span class="glyphicon glyphicon-triangle-right expand rotate1" aria-hidden="true"></span>
+						4 <span>数据库</span>
+						<input type="text" name="main_4" style="background: #e6e6e6;width: 60%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok okM" style="color:  #009F95;display: none;cursor: pointer;"></span>
+					</div>
+					<div >
+					<div class="sub_title 4_1">4.1 <span>数据库应用介绍</span>
+							<input type="text" name="sub_4_1" style="background: #e6e6e6;width: 70%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok ok" style="color:  #009F95;display: none;cursor: pointer;"></span></div>
+						<div class="sub_title 4_2">4.2 <span>E-R图</span>
+							<input type="text" name="sub_4_2" style="background: #e6e6e6;width: 70%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok ok" style="color:  #009F95;display: none;cursor: pointer;"></span></div>
+						<div class="sub_title 4_3">4.3 <span>数据库表结构设计</span>
+							<input type="text" name="sub_4_3" style="background: #e6e6e6;width: 70%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok ok" style="color:  #009F95;display: none;cursor: pointer;"></span></div>
+					</div>
+					</div>
+					<div class="block">
+					<div class="main_title 5">
+						<span class="glyphicon glyphicon-triangle-right expand rotate1" aria-hidden="true"></span>
+						5 <span>系统设计</span>
+						<input type="text" name="main_5" style="background: #e6e6e6;width: 60%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok okM" style="color:  #009F95;display: none;cursor: pointer;"></span>
+					</div>
+					<div >
+					<div class="sub_title 5_1">5.1 <span>系统设计模块</span>
+							<input type="text" name="sub_5_1" style="background: #e6e6e6;width: 70%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok ok" style="color:  #009F95;display: none;cursor: pointer;"></span>
+						</div>
+						<div class="sub_title 5_2">5.2 <span>系统功能分析</span>
+							<input type="text" name="sub_5_2" style="background: #e6e6e6;width: 70%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok ok" style="color:  #009F95;display: none;cursor: pointer;"></span>
+						</div>
+					</div>
+					</div>
+					<div class="block">
+					<div class="main_title 6">
+						6 <span>结论</span>
+						<input type="text" name="main_6" style="background: #e6e6e6;width: 60%;display: none;" />
+							<span class="glyphicon glyphicon-pencil edit" style="color: #009F95;cursor: pointer;"></span>
+							<span class="glyphicon glyphicon-ok okM" style="color:  #009F95;display: none;cursor: pointer;"></span>
+					</div>
+					
+					</div>
+					<div class="block">
+					<div class="main_title 7">
+						<span>参考文献</span>
+					</div>
+					
+					</div>
+					<div class="block">
+					<div class="main_title 8">
+						<span>致谢</span>
+					</div>
+					<div class="block">
+					<div class="main_title 9">
+						<span>附录</span>
+					</div>
+					
+					</div>
+					
+					</div>
+				</div>
+				<!--文档部分-->
+			<div class="main">
+						
+				<div class="cover">
+					<table>
+						<tr>
+							<td align="right" valign="bottom">题目：</td>
+							<td><input type="text" name="title" id="title"  /></td>
+						</tr>
+						<tr>
+							<td align="right" valign="bottom">学院：</td>
+							<td><input type="text" name="Academy" id="Academy" /></td>
+						</tr>
+						<tr>
+							<td align="right" valign="bottom">专业年级：</td>
+							<td><input type="text" name="major" id="major" value="" /></td>
+						</tr>
+						<tr>
+							<td align="right" valign="bottom">学号：</td>
+							<td><input type="text" name="stuId" id="stuId" value="" /></td>
+						</tr>
+						<tr>
+							<td align="right" valign="bottom">学生姓名：</td>
+							<td><input type="text" name="stuName" id="stuName"/></td>
+						</tr>
+						<tr>
+							<td align="right" valign="bottom">指导老师、职称：</td>
+							<td><input type="text" name="teacher" id="teacher"  /></td>
+						</tr>
+						
+					</table>
+				</div>
+			
+				<!--页面-->
+				<div class="page">
+					<div style="text-align: center;margin-top: 50px;" > <input type="text"  name="title_en" id="title_en" style="width: 400px;font-size: 20px;" placeholder="title here" /></div>
+					<div>
+					<table style="margin-left: 150px; margin-top: 300px;font-size: 18px;">
+						<tr>
+							<td align="right" valign="bottom">College：</td>
+							<td><input type="text" name="College" id="College"  /></td>
+						</tr>
+						<tr>
+							<td align="right" valign="bottom">Specialty and Grade：</td>
+							<td><input type="text" name="Specialty" id="Specialty" /></td>
+						</tr>
+						<tr>
+							<td align="right" valign="bottom">Number：</td>
+							<td><input type="text" name="Number" id="Number" value="" /></td>
+						</tr>
+						<tr>
+							<td align="right" valign="bottom">Name：</td>
+							<td><input type="text" name="name_en" id="name_en" value="" /></td>
+						</tr>
+						<tr>
+							<td align="right" valign="bottom">Advisor：</td>
+							<td><input type="text" name="Advisor" id="Advisor"/></td>
+						</tr>
+						<tr>
+							<td align="right" valign="bottom">Submitted Time：</td>
+							<td><input type="text" name="Submitted" id="Submitted"  /></td>
+						</tr>
+						
+					</table>
+					</div>
+				</div>
+				<div class="page">
+					<div class="page_header" id="abstract_cn">摘要</div>
+					<textarea name="abstract_cn" cols="35" rows="20" style="margin-left: 50px;font-size: 16px; width: 600px;"></textarea>
+					<div style="margin-left: 50px;">关键词：<input type="text" name="keyword_cn" /></div>
+					
+				</div>
+				<div class="page">
+					<div class="page_header" id="abstract_en">abstract</div>
+					<textarea name="abstract_en" cols="35" rows="20" style="margin-left: 50px;font-size: 16px; width: 600px;"></textarea>
+					<div style="margin-left: 50px;">Key words:<input type="text" name="keyword_en" /></div>
+				</div>
+				<div class="page" style="height: 1100px;">
+					<div class="page_header ">
+							1 <span id="1" >引言</span>
+						</div>
+						<div class="blocker">
+						 <p >1.1<span id="1_1"> 课题设计的背景</span></p>
+						 <textarea name="1_1" rows="15" cols="35" style="width: 600px;margin-right: 50px;"></textarea>
+						</div>
+						<div class="blocker">
+						 <p  >1.2<span id="1_2"> 课题设计的目的和意义</span></p>
+						 <textarea name="1_2" rows="15" cols="35" style="width: 600px;margin-right: 50px;"></textarea>
+						</div>
+						<div class="blocker">
+						 <p >1.3<span id="1_3"> 课题设计的关键技术</span></p>
+						 <textarea name="1_3" rows="10" cols="35" style="width: 600px;margin-right: 50px;"></textarea>
+						</div>
+						
+				</div>
+				<div class="page">
+				<div class="page_header" >
+							2 <span id="2">运行环境和设计思路</span>
+						</div>
+				<div class="blocker">
+						 <p>2.1<span  id="2_1"> 运行环境</span></p>
+						 <textarea name="2_1" rows="15" cols="35" style="width: 600px;margin-right: 50px;"></textarea>
+				</div>
+				<div class="blocker">
+						 <p>2.2<span id="2_2"> 设计思路</span></p>
+						 <textarea name="2_2" rows="12" cols="35" style="width: 600px;margin-right: 50px;"></textarea>
+						</div>
+			</div>
+			<div class="page">
+				<div class="page_header" >
+							3 <span id="3">需求分析</span>
+						</div>
+				<div class="blocker">
+						 <p id="3"></p>
+						 <textarea name="3" rows="30" cols="35" style="width: 600px;margin-right: 50px;"></textarea>
+				</div>
+			</div>
+			<div class="page">
+				<div class="page_header" >
+							4 <span id="4">数据库设计</span>
+
+						</div>
+				<div class="blocker">
+						 <p >4.1<span id="4_1"> 数据库应用介绍</span></p>
+						 <textarea name="4_1" rows="10" cols="35" style="width: 600px;margin-right: 50px;"></textarea>
+				</div>
+				<div class="blocker">
+						 <p >4.2<span id="4_2"> E-R图</span></p>
+						  <input id="file" name="e_r" class="filepath" onchange="changepic(this)" type="file" style="opacity: 0;"><br>
+   	<label class="pic " for="file" id="show1">
+   		
+   	</label>
+				</div>
+				</div>
+				<div class="page">
+				<div class="blocker">
+						 <p>4.3<span  id="4_3"> 数据库表结构设计</span></p>
+						 <textarea name="4_3" rows="10" cols="35" style="width: 600px;margin-right: 50px;"></textarea>
+				</div>
+			</div>
+			<div class="page">
+				<div class="page_header" >
+							5 <span id="5">系统设计</span>
+						</div>
+				<div class="blocker">
+						 <p >5.1<span id="5_1"> 系统模块结构</span></p>
+						 <textarea name="5_1" rows="10" cols="35" style="width: 600px;margin-right: 50px;"></textarea>
+				</div>
+				<div class="blocker">
+					 <p>5.2<span  id="5_2"> 功能分析</span></p>
+					 <textarea name="5_2" rows="20" cols="35" style="width: 600px;margin-right: 50px;"></textarea>
+				</div>
+			</div>
+			<div class="page">
+				<div class="page_header" >
+							6 <span id="6">结论</span>
+						</div>
+				<div class="blocker"> <textarea name="6" rows="30" cols="35" style="width: 600px;margin-right: 50px;"></textarea></div>
+				
+			</div>
+			<div class="page">
+				<div class="page_header" id="7">参考文献</div>
+				<div class="blocker"> <textarea name="7" rows="30" cols="35" style="width: 600px;margin-right: 50px;"></textarea></div>
+				
+			</div>
+			<div class="page">
+				<div class="page_header" id="8">致谢</div>
+				<div class="blocker"> <textarea name="8" rows="30" cols="35" style="width: 600px;margin-right: 50px;"></textarea></div>
+				
+			</div>
+			<div class="page">
+				<div class="page_header" id="9">附录</div>
+				<div class="blocker"> <textarea name="9" rows="30" cols="35" style="width: 600px;margin-right: 50px;"></textarea></div>
+				
+			</div>
+			</div>
+			</form>
+			
+			</div>
+			
+			
+	</body>
+<script>
+    function changepic() {
+        var reads= new FileReader();
+        f=document.getElementById('file').files[0];
+        reads.readAsDataURL(f);
+        reads.onload=function (e) {
+            $("#show1").css("background-image","url("+this.result+")")
+	        };
+    }
+</script>
+</html>

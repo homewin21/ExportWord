@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>登录页面</title>
+
+		<link rel="stylesheet"  th:href="@{/bootstrap/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/common.css}" />
+		<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	</head>
+
+	<body>
+	<div id="nav" style="background-color: #FFFFFF;	display: flex;justify-content: space-between;">
+	<div>
+		<ul class="nav nav-pills">
+
+			<li role="presentation" class="active">
+				<a href="/main">创建文档</a>
+			</li>
+
+			<li role="presentation">
+				<a href="/download">我的文档</a>
+			</li>
+
+		</ul>
+	</div>
+	<div style="line-height: 40px;margin-right: 40px;">
+		<span th:if="${session.user}==null">未登录</span>
+		<span th:if="${session.user}!=null">你好，<span th:text=${session.user.username}></span>
+		<div class="btn-group" style="margin-right: 30px">
+  <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #ffffff">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="logout">注销</a></li>
+  </ul>
+</div></span>
+		
+	</div>
+</div>
+		<div class="container_area">
+			
+			
+		<form action="#" th:action="@{/login}" th:object="${user}" method="post"> 
+				<div class="login_area">
+				<div class="form-horizontal " id="login_form">
+				<div class="form-title" style="text-align: center">欢迎登录</div>
+					<div class="col-md-10 col-md-offset-1">
+						<div class="form-group ">
+                        <i class="fa glyphicon glyphicon-user  fontz" ></i>
+                        <input class="form-control required" type="text" placeholder="Username" id="username" name="username" autofocus="autofocus" maxlength="16"/>
+                   		
+                    </div>
+
+
+						<div class="form-group">
+                            <i class="fa glyphicon glyphicon-lock fa-lg fontz" ></i>
+                            <input class="form-control required" type="password" placeholder="Password" id="password" name="password" maxlength="16"/>
+                    </div>
+                    <div class="form-group">
+                    <p style="color:red;margin-bottom: 0px;font-size:14px;" th:text="${lg_msg}" th:if="${not #strings.isEmpty(lg_msg)}" ></p>
+                    </div>
+
+						
+						<div class="form-group " style="margin-bottom: 30px;">
+								<button type="submit" class="btn btn-success " name="submit" style="width: 100%;font-size: 18px;">登        录</button>
+							</div>
+						<div class="form-group" style="border-top: solid 1px #000000;margin-bottom: 30px;padding-top: 30px;text-align: center">
+					<span >还没有账号？</span><a href="register">立即注册</a>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+<script>
+		$(function() {
+			var top = $('#nav').offset().top;
+			$(document).scroll(function() {
+	//获取当前滚动栏scroll的高度并赋值
+	var scrTop = $(window).scrollTop();
+	//开始判断如果导航栏距离顶部的高度等于当前滚动栏的高度则开启悬浮
+	if(scrTop >= top) {
+		$('#nav').css({
+			'position': 'fixed',
+			'top': '0',
+			'width': '100%'
+		});
+	} else { //否则清空悬浮
+		$('#nav').css({
+			'position': '',
+			'top': ''
+		});
+	}
+})
+		})
+		
+	</script>
+	</body>
+
+</html>

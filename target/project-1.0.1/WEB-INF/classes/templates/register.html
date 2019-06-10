@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/common.css}" />
+		<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/register.js}"></script>
+	</head>
+
+	<body>
+	<div id="nav" style="background-color: #FFFFFF;	display: flex;justify-content: space-between;">
+	<div>
+		<ul class="nav nav-pills">
+
+			<li role="presentation" class="active">
+				<a href="/main">创建文档</a>
+			</li>
+
+			<li role="presentation">
+				<a href="/download">我的文档</a>
+			</li>
+
+		</ul>
+	</div>
+	<div style="line-height: 40px;margin-right: 20px;">
+		<span th:if="${session.user}==null">未登录</span>
+		<span th:if="${session.user}!=null">你好，<span th:text=${session.user.username}></span>
+		<div class="btn-group" style="margin-right: 30px">
+  <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #ffffff">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="logout">注销</a></li>
+  </ul>
+</div></span>
+	</div>
+</div>
+
+		<!-- <div class="container"> -->
+		<div class="container_area">
+		<form action="#" th:action="@{/add}" th:object="${user}" method="post"> 
+		<div class="register_area">
+		
+				<!-- <div class="form-horizontal " id="login_form"> -->
+						<div class="form-title" style="text-align: center">注册</div>
+					<div class="col-md-10 col-md-offset-1">
+						<div class="">
+							<i class="fa glyphicon glyphicon-user fontz "></i>
+							<input class="form-control required" type="text" placeholder="请输入你的用户名" id="username" name="username" autofocus="autofocus" maxlength="20" />
+							<p style="color:red;margin-bottom: 0px;font-size:14px;" th:text="${msg1}" th:if="${not #strings.isEmpty(msg1)}" ></p>
+						</div>
+
+						<div class="">
+							<i class="fa glyphicon glyphicon-lock  fontz"></i>
+							<input class="form-control required" type="password" placeholder="请输入你的密码" id="password" name="password" maxlength="20" />
+							<p style="color:red;margin-bottom: 0px;font-size:14px;" th:text="${msg2}" th:if="${not #strings.isEmpty(msg2)}" ></p>
+						</div>
+						<div>
+						<div class="fb " style="display: flex;">
+							<div style="width: 70%;" >
+							<i class="fa glyphicon glyphicon-phone  fontz"></i>
+							
+							<input class="form-control required" type="text" placeholder="请输入你的手机号" id="phone" name="phone" maxlength="11"  />
+							<p style="color:red;margin-bottom: 0px;font-size:14px;" th:text="${msg3}" th:if="${not #strings.isEmpty(msg3)}" ></p>
+							<p style="color:red;margin-bottom: 0px;font-size:14px; display: none" id="phone_Area" >请输入正确的手机号码</p>
+							</div>
+							<div style="width: 30%;padding-top: 25.6px;">
+							<input type="button" class="btn btn-success " style="width: 100%;height: 40px;" id="sendver" value="发送验证码" />	
+	      </div>
+						</div>
+						</div>
+						<div style="margin-bottom: 30px;">
+							<i class="fa glyphicon glyphicon-barcode fa-lg fontz"></i>
+							<input class="form-control required" type="text" placeholder="验证码" id="vercode" name="vercode" maxlength="6" />
+							<p style="color:red;margin-bottom: 0px;font-size:14px;" th:text="${msg4}" th:if="${not #strings.isEmpty(msg4)}" ></p>
+						</div>
+						
+						
+							
+							<!-- <div class="drag" >
+								<div class="bg"></div>
+								<div class="text" onselectstart="return false;">请拖动滑块解锁</div>
+								<div class="btn1">>></div>
+								
+						</div> -->
+						<div style="margin-top: 30px;margin-bottom: 30px;">
+								<button type="submit" class="btn btn-success " name="submit" style="width: 100%;font-size: 18px;">注      册</button>
+							</div>
+					</div>
+				</div>
+				</form>
+				</div>
+	<!-- 	</div> -->
+		<script>
+		$(function() {
+			var top = $('#nav').offset().top;
+			$(document).scroll(function() {
+	//获取当前滚动栏scroll的高度并赋值
+	var scrTop = $(window).scrollTop();
+	//开始判断如果导航栏距离顶部的高度等于当前滚动栏的高度则开启悬浮
+	if(scrTop >= top) {
+		$('#nav').css({
+			'position': 'fixed',
+			'top': '0',
+			'width': '100%'
+		});
+	} else { //否则清空悬浮
+		$('#nav').css({
+			'position': '',
+			'top': ''
+		});
+	}
+})
+		})
+		
+	</script>
+	</body>
+
+</html>

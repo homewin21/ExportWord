@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>我的文档</title>
+				<link rel="stylesheet"  th:href="@{/bootstrap/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/download.css}" />
+		<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/layer/layui.js}"></script>
+		<link rel="stylesheet" th:href="@{/layer/css/layui.css}" />
+	</head>
+	<body>
+	<div id="nav" style="background-color: #FFFFFF;	display: flex;justify-content: space-between;">
+	<div>
+		<ul class="nav nav-pills">
+
+			<li role="presentation" class="active">
+				<a href="/main">创建文档</a>
+			</li>
+
+			<li role="presentation">
+				<a href="/download">我的文档</a>
+			</li>
+
+		</ul>
+	</div>
+	<div style="line-height: 40px;margin-right: 20px;">
+		<span th:if="${session.user}==null">未登录</span>
+		<span th:if="${session.user}!=null">你好，<span th:text=${session.user.username}></span>
+		<div class="btn-group" style="margin-right: 30px">
+  <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #ffffff">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="logout">注销</a></li>
+  </ul>
+</div></span>
+		
+	</div>
+</div>
+		<div class="contain"> 
+			<table class="table">
+    <thead>
+    <tr>
+        <th>文档名</th>
+        <th>创建时间</th>
+    </tr>
+    </thead>
+    <tbody>
+     <tr  th:each="word: ${wordList}">  
+                <td th:text="${word.word_name}" style="width: 30%"></td>  
+                <td th:text="${word.create_time}"  style="width: 50%"></td>  
+				<td  style="width: 20%"><a href="#" th:href="@{${word.word_name}+'.doc'}" class="btn btn-success butt">下载</a>
+				<button class="btn btn-danger butt" th:id="@{'/del/'+${word.word_name}}" >删除</button>
+				</td>
+              </tr>  
+    </tbody>
+</table>
+
+		</div>
+	</body>
+	<script>
+		$(function () {
+			$(".btn-danger").click(function() {
+				var word_name = $(this).prop('id');
+					layui.use(['layer', 'form'], function(){
+						  var layer = layui.layer
+						  ,form = layui.form;
+						  layer.confirm('是否确定删除该文档？', {
+							  btn: ['确认删除', '取消'] //可以无限个按钮
+							  ,btn2: function(index, layero){
+								  
+							  }
+							}, function(index, layero){
+								//重定向
+								window.location.replace(word_name);
+								
+							}, function(index){
+							});
+						  	  });
+		}) 
+		})
+	</script>
+</html>

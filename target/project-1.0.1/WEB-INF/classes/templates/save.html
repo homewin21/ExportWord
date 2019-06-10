@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js" ></script>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/save.css" />
+	</head>
+	<script>
+	$(function() {
+		$("#examine").click(function() {
+			$(location).attr("href","/download");
+		})
+		$("#create").click(function() {
+			$(location).attr("href","/main");
+		})
+		var top = $('#nav').offset().top;
+			$(document).scroll(function() {
+	//获取当前滚动栏scroll的高度并赋值
+	var scrTop = $(window).scrollTop();
+	//开始判断如果导航栏距离顶部的高度等于当前滚动栏的高度则开启悬浮
+	if(scrTop >= top) {
+		$('#nav').css({
+			'position': 'fixed',
+			'top': '0',
+			'width': '100%'
+		});
+	} else { //否则清空悬浮
+		$('#nav').css({
+			'position': '',
+			'top': ''
+		});
+	}
+})
+	})
+
+</script>
+	<body>
+		<div id="nav" style="background-color: #FFFFFF;	display: flex;justify-content: space-between;">
+	<div>
+		<ul class="nav nav-pills">
+
+			<li role="presentation" class="active">
+				<a href="/main">创建文档</a>
+			</li>
+
+			<li role="presentation">
+				<a href="/download">我的文档</a>
+			</li>
+
+		</ul>
+	</div>
+	<div style="line-height: 40px;margin-right: 20px;">
+				<span th:if="${session.user}==null">未登录</span>
+		<span th:if="${session.user}!=null">你好，<span th:text=${session.user.username}></span>
+		<div class="btn-group" style="margin-right: 30px">
+  <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #ffffff">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="logout">注销</a></li>
+  </ul>
+</div></span>
+		
+	</div>
+</div>
+		<div class="succ">
+			<div style="display: flex;">
+			<div class="tick">
+				<span class="glyphicon glyphicon-ok"></span>
+				
+			</div>
+			<div style="color: #5CB85C; font-size: 30px;">
+				文档保存成功！
+			</div>
+			</div>
+			<button type="button" class="btn btn-success butt" id="examine">查看我的文档</button>
+			<button type="button" class="btn btn-success butt" id="create">创建新的文档</button>
+		</div>
+	</body>
+</html>

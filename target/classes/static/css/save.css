@@ -1,0 +1,37 @@
+body{
+	background-color: #E0E0E0;
+	
+}
+.succ{
+	margin-left: 250px;
+	margin-top: 100px;
+	width: 1000px;
+	height: 500px;
+	background-color: #FFFFFF;
+	padding-top: 150px;
+}
+#nav{
+
+}
+.acount{
+	
+}
+.tick{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #5CB85C;
+	color: #FFFFFF;
+	font-size: 30px;
+	text-align: center;
+	line-height: 55px;
+	margin-left: 350px;
+	margin-right: 20px;
+}
+.butt{
+	margin-top: 200px;
+	margin-left: 200px;
+	width: 200px;
+	height: 50px;
+	
+}
